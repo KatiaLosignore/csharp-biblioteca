@@ -62,7 +62,7 @@ Console.WriteLine("---------------------------------------");
 Document documentoSearch = library.SearchDocumentByCode("5897");
 if (documentoSearch != null)
 {
-    Console.WriteLine("Document found: " + documentoSearch.Title);
+    Console.WriteLine("Document found: " + documentoSearch.Code);
 }
 else
 {
@@ -84,5 +84,5 @@ List<Lending> lendingUser = library.SearchLendingUser("Mario", "Bianchi");
 
 foreach ( var lending in lendingUser)
 {
-    Console.WriteLine($"Lending of {lending.Document.Title} , User: {lending.User.Firstname} {lending.User.Lastname}");
+    Console.WriteLine($"Lending of book: {lending.Document.Title} , User: {lending.User.Firstname} {lending.User.Lastname}");
 }
