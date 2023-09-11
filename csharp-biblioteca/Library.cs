@@ -25,5 +25,29 @@ namespace csharp_biblioteca
             this.Lendings = new List<Lending>();
         }
 
+
+        // METODI
+
+        public void AddUser(User user)
+        {
+            this.Users.Add(user);
+        }
+
+        public void AddBook(Book book)
+        {
+            this.Documents.Add(book);
+        }
+
+        public void AddDvd(Dvd dvd)
+        {
+            this.Documents.Add(dvd);
+        }
+
+        public void AddLending(Lending lending)
+        {
+            this.Lendings.Add(lending);
+            Console.WriteLine($"You have successfully ordered a book!");
+        }
+
     }
 }

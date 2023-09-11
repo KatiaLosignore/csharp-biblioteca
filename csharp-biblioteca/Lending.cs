@@ -39,16 +39,11 @@ namespace csharp_biblioteca
                 choice = Console.ReadLine();
             }
 
-            if (choice == "y")
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+             return choice == "y";
+            
         }
 
-        public void PrintInfoLending()
+        public void PrintInfoU()
         {
             Console.WriteLine("User loan information: ");
             Console.WriteLine($"Start Time: {this.StartTime}\r\nEnd Time: {this.EndTime}\r\n User: {User.Firstname} {User.Lastname}\r\nDocument: {Document.Code} {Document.Title}");
