@@ -28,7 +28,7 @@ namespace csharp_biblioteca
 
         public Document(string code, string title, int year, string category, int position, string author)
         {
-            this.Code = Code;
+            this.Code = code;
             this.Title = title;
             this.Year = year;
             this.Category = category;
