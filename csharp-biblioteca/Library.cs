@@ -28,26 +28,60 @@ namespace csharp_biblioteca
 
         // METODI
 
+        // Metodo per aggiungere un Utente
         public void AddUser(User user)
         {
             this.Users.Add(user);
         }
 
+        // Metodo per aggiungere un libro
         public void AddBook(Book book)
         {
             this.Documents.Add(book);
         }
 
+        // Metodo per aggiungere un Dvd
         public void AddDvd(Dvd dvd)
         {
             this.Documents.Add(dvd);
         }
 
-        public void AddLending(Lending lending)
+        // Metodo per aggiungere un prestito
+        public void AddLending(Lending lending, User user)
         {
             this.Lendings.Add(lending);
             Console.WriteLine($"You have successfully ordered a book!");
         }
 
+        // Metodo per cercare un documento per codice
+        public Document SearchDocumentByCode(string code)
+        {
+            return this.Documents.Find(doc => doc.Code == code);
+        }
+
+        // Metodo per cercare un documento per titolo
+        public List<Document> SearchDocumentByTitle(string title)
+        {
+            return this.Documents.FindAll(doc => doc.Title.Contains(title));
+        }
+
+        // Metodo per cercare prestiti con il nome e cognome Utente
+
+        public List<Lending> SearchLendingUser(string nome, string cognome)
+        {
+            return Lendings.FindAll(lending => lending.User.Firstname == nome && lending.User.Firstname == cognome);
+        }
+
+
+
+        
+
+
     }
-}
+
+ }
+
+
+
+
+

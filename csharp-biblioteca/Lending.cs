@@ -43,7 +43,7 @@ namespace csharp_biblioteca
             
         }
 
-        public void PrintInfoU()
+        public void PrintInfo()
         {
             Console.WriteLine("User loan information: ");
             Console.WriteLine($"Start Time: {this.StartTime}\r\nEnd Time: {this.EndTime}\r\n User: {User.Firstname} {User.Lastname}\r\nDocument: {Document.Code} {Document.Title}");
