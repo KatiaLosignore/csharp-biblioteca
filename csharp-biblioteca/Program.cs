@@ -84,5 +84,5 @@ List<Lending> lendingUser = library.SearchLendingUser("Mario", "Bianchi");
 
 foreach ( var lending in lendingUser)
 {
-    Console.WriteLine($"Lending of {lending.Document.Title} {lending.User.Firstname} {lending.User.Lastname}");
+    Console.WriteLine($"Lending of {lending.Document.Title} , User: {lending.User.Firstname} {lending.User.Lastname}");
 }

@@ -49,14 +49,8 @@ namespace csharp_biblioteca
         // Metodo per aggiungere un prestito
         public void AddLending(DateTime startTime, DateTime endTime, User user, Document document)
         {
-            Lending lending = new Lending()
-            {
-                StartTime = startTime,
-                EndTime = endTime,
-                User = user,
-                Document = document
-            };
-
+            Lending lending = new Lending(startTime, endTime, user, document);
+  
             this.Lendings.Add(lending);
             Console.WriteLine($"You have successfully added a loan!");
         }
