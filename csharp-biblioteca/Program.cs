@@ -54,7 +54,10 @@ Console.WriteLine("---------------------------------------");
 library.AddUser(userOne);
 
 // Registro un prestito
+Lending lendingOne = new Lending(DateTime.Now, DateTime.Now.AddDays(19), userOne, bookTwo);
+
 library.AddLending(DateTime.Now, DateTime.Now.AddDays(15), userOne, bookOne);
+lendingOne.PrintInfoLending();
 
 Console.WriteLine("---------------------------------------");
 
