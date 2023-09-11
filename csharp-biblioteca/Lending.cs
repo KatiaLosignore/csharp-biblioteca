@@ -8,22 +8,19 @@ namespace csharp_biblioteca
 {
     public class Lending
     {
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public User User { get; set; }
         public Document Document { get; set; }
 
-        public Lending(User user, Document document)
+        public Lending(DateTime startTime, DateTime endTime, User user, Document document)
         {
+            this.StartTime = startTime;
+            this.EndTime = endTime;
             this.User = user;
             this.Document = document;
-
-            Console.WriteLine("Insert start date (dd/mm/yyyy)");
-            this.StartTime = Console.ReadLine();
-
-            Console.WriteLine("Insert end date (dd/mm/yyy)");
-            this.EndTime = Console.ReadLine();
         }
+
 
 
         // METODI

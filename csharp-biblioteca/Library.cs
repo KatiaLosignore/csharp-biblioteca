@@ -47,10 +47,18 @@ namespace csharp_biblioteca
         }
 
         // Metodo per aggiungere un prestito
-        public void AddLending(Lending lending, User user)
+        public void AddLending(DateTime startTime, DateTime endTime, User user, Document document)
         {
+            Lending lending = new Lending()
+            {
+                StartTime = startTime,
+                EndTime = endTime,
+                User = user,
+                Document = document
+            };
+
             this.Lendings.Add(lending);
-            Console.WriteLine($"You have successfully ordered a book!");
+            Console.WriteLine($"You have successfully added a loan!");
         }
 
         // Metodo per cercare un documento per codice
@@ -67,9 +75,9 @@ namespace csharp_biblioteca
 
         // Metodo per cercare prestiti con il nome e cognome Utente
 
-        public List<Lending> SearchLendingUser(string nome, string cognome)
+        public List<Lending> SearchLendingUser(string firstName, string lastName)
         {
-            return Lendings.FindAll(lending => lending.User.Firstname == nome && lending.User.Firstname == cognome);
+            return Lendings.FindAll(lending => lending.User.Firstname == firstName && lending.User.Lastname == lastName);
         }
 
 

@@ -12,7 +12,7 @@ namespace csharp_biblioteca
         public int Duration { get; set; }
 
         // COSTRUTTORE
-        public Dvd(string code, string title, int year, string category, int position, string author, int duration) : base(code, title, year, category, position, author)
+        public Dvd(string code, string title, int year, string category, string position, string author, int duration) : base(code, title, year, category, position, author)
         {
             this.Duration = duration;
         }
@@ -22,7 +22,7 @@ namespace csharp_biblioteca
         public override void PrintInfo()
         {
             base.PrintInfo();
-            Console.WriteLine($"Duration: {this.Duration}");
+            Console.WriteLine($"Duration: {this.Duration} minutes");
         }
 
 

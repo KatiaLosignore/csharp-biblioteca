@@ -19,14 +19,14 @@ namespace csharp_biblioteca
 
         public string Category { get; set; }
 
-        public int Position { get; set; }
+        public string Position { get; set; }
 
         public string Author { get; set; }
 
 
         // COSTRUTTORE
 
-        public Document(string code, string title, int year, string category, int position, string author)
+        public Document(string code, string title, int year, string category, string position, string author)
         {
             this.Code = code;
             this.Title = title;

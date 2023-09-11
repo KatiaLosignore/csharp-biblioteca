@@ -12,7 +12,7 @@ namespace csharp_biblioteca
         public int NumberOfPages { get; set; }
 
         // COSTRUTTORE
-        public Book(string code, string title, int year, string category, int position, string author, int numberOfPages) : base(code, title, year, category, position, author)
+        public Book(string code, string title, int year, string category, string position, string author, int numberOfPages) : base(code, title, year, category, position, author)
         {
             this.NumberOfPages = numberOfPages;
         }

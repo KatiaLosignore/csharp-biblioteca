@@ -17,25 +17,23 @@ namespace csharp_biblioteca
 
 
         // COSTRUTTORE
-        public User()
+        public User(string lastname, string firstname, string email, string password, string phoneNumber)
         {
+            this.Lastname = lastname;
+            this.Firstname = firstname;
+            this.Email = email;
+            this.Password = password;
+            this.PhoneNumber = phoneNumber;
+        }
 
-            Console.WriteLine("Insert your Lastname:");
-            this.Lastname = Console.ReadLine();
+        // METODI
 
-            Console.WriteLine("Insert your Firstname:");
-            this.Firstname = Console.ReadLine();
-
-            Console.WriteLine("Insert your Email:");
-            this.Email = Console.ReadLine();
-
-            Console.WriteLine("Insert your Password:");
-            this.Password = Console.ReadLine();
-
-            Console.WriteLine("Insert your Telephone number:");
-            this.PhoneNumber = Console.ReadLine();
-        } 
-
-
+        public void PrintInfoUser()
+        {
+            Console.WriteLine($"Lastname: {this.Lastname}\r\nFirstname: {this.Firstname}\r\nEmail: {this.Email}\r\nPassword: {this.Password}\r\nPhoneNumber: {this.PhoneNumber}");
+        }
     }
 }
+
+
+
