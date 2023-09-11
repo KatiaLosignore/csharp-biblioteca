@@ -15,22 +15,11 @@ namespace csharp_biblioteca
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
 
-        
+
         // COSTRUTTORE
-        public User(string lastname, string firstname, string email, string password, string phoneNumber)
+        public User()
         {
-            this.Lastname = lastname;
-            this.Firstname = firstname;
-            this.Email = email;
-            this.Password = password;
-            this.PhoneNumber = phoneNumber;
-        }
 
-
-        // METODI
-
-        public void InfoRequestUser()
-        {
             Console.WriteLine("Insert your Lastname:");
             this.Lastname = Console.ReadLine();
 
@@ -45,7 +34,8 @@ namespace csharp_biblioteca
 
             Console.WriteLine("Insert your Telephone number:");
             this.PhoneNumber = Console.ReadLine();
-        }
+        } 
+
 
     }
 }
