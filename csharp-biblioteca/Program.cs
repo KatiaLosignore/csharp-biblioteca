@@ -16,7 +16,7 @@ Book bookTwo = new Book("4897", "Tokyo Express", 2020, "Novel", "23B", "Seichö 
 
 // Istanzio la classe Dvd
 Dvd dvdOne = new Dvd("1485", "Sonic", 2020, "Adventure", "125A", "Jeff Fowler", 100);
-Dvd dvdTwo = new Dvd("2425", "Pinocchio", 2013, "Fantasy", "250B", "eNZO D'Alò", 120);
+Dvd dvdTwo = new Dvd("2425", "Pinocchio", 2013, "Fantasy", "250B", "Enzo D'Alò", 120);
 
 // Aggiungo i documenti creati alla biblioteca
 library.AddBook(bookOne);
