@@ -43,9 +43,13 @@ library.ToString();
 
 
 
+var docSearched = library.SearchDocumentByCode(dvdOne.Code);
+Console.WriteLine(docSearched);
+
+
 foreach (Document doc in library.GetListOfDocuments())
 {
-    Console.WriteLine(doc);
+    Console.WriteLine(doc.Title);
 }
 
 Lending newLoan = library.RegisterAndGetLoan(DateTime.Now, DateTime.Now.AddDays(2), userOne, dvdOne);

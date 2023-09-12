@@ -11,7 +11,7 @@ namespace csharp_biblioteca
     {
         // PROPRIETA'
 
-        private int loanNextNumber = 0;
+        private int loanNextNumber = 1;
         public string Name { get; set; }
         public List<User> Users { get; set; }
         public Dictionary<string, Document> Documents { get; set; }
