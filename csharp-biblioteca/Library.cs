@@ -10,9 +10,11 @@ namespace csharp_biblioteca
     public class Library
     {
         // PROPRIETA'
+
+        private int loanNextNumber = 0;
         public string Name { get; set; }
         public List<User> Users { get; set; }
-        public List<Document> Documents { get; set; }
+        public Dictionary<string, Document> Documents { get; set; }
         public List<Lending> Lendings { get; set; }
 
         // COSTRUTTORI
@@ -21,8 +23,28 @@ namespace csharp_biblioteca
         {
             this.Name = name;
             this.Users = new List<User>();
-            this.Documents = new List<Document>();
+            this.Documents = new Dictionary<string, Document>();
             this.Lendings = new List<Lending>();
+        }
+
+        // GETTERS
+        public int GetTotalDocuments()
+        {
+            return Documents.Count;
+        }
+
+        public List<Document> GetListOfDocuments()
+        {
+            List<Document> documentList = new List<Document>();
+
+            var listDocument = Documents.Values;
+
+            foreach (var doc in listDocument)
+            {
+                documentList.Add(doc);
+            }
+
+            return documentList;
         }
 
 
@@ -34,50 +56,132 @@ namespace csharp_biblioteca
             this.Users.Add(user);
         }
 
-        // Metodo per aggiungere un libro
-        public void AddBook(Book book)
+        // Metodo per aggiungere un documento 
+        public void AddDocs(Document document)
         {
-            this.Documents.Add(book);
+            this.Documents.Add(document.Code, document);
         }
 
-        // Metodo per aggiungere un Dvd
-        public void AddDvd(Dvd dvd)
+        // Metodo per aggiungere un prestito 
+
+        public void AddLending(Lending loan)
         {
-            this.Documents.Add(dvd);
+            Lendings.Add(loan);
         }
 
-        // Metodo per aggiungere un prestito
-        public void AddLending(DateTime startTime, DateTime endTime, User user, Document document)
+
+        // Metodo bool di registrazione prestito
+        public bool RegisterLoan(User user, Document document, DateTime startTime, DateTime endTime)
         {
-            Lending lending = new Lending(startTime, endTime, user, document);
-  
-            this.Lendings.Add(lending);
-            Console.WriteLine($"You have successfully added a loan!");
+            if (!Users.Contains(user))
+            {
+                Console.WriteLine("User not registered in database");
+                return false;
+            }
+
+            if (!Documents.ContainsKey(document.Code))
+            {
+                Console.WriteLine("Document not available");
+                return false;
+            }
+
+            foreach (var key in Lendings)
+            {
+                if (key.Document == document && key.EndTime >= key.StartTime)
+                {
+                    Console.WriteLine("Document has already been loaned");
+                    return false;
+                }
+            }
+
+            var loan = new Lending(loanNextNumber, startTime, endTime, user, document);
+
+            Lendings.Add(loan);
+
+            loanNextNumber++;
+
+            Console.WriteLine("Loan registered successfully");
+            return true;
+
         }
+
+
+        public Lending RegisterAndGetLoan(DateTime startTime, DateTime endTime, User user, Document document)
+        {
+
+            if (startTime < DateTime.Now.AddMinutes(-1) || startTime > endTime)
+            {
+                throw new Exception("Loan is not corrected! Please check dates");
+
+            }
+
+            if (!Users.Contains(user))
+            {
+                Console.WriteLine("User not registered in database");
+                return null;
+            }
+
+            if (!Documents.ContainsKey(document.Code))
+            {
+                Console.WriteLine("Document not available");
+                return null;
+            }
+
+            foreach (var loanRetrieved in Lendings)
+            {
+                if (loanRetrieved.Document == document && loanRetrieved.EndTime >= startTime)
+                {
+                    Console.WriteLine("Document has already been loaned");
+                    return null;
+                }
+            }
+
+            var loan = new Lending(loanNextNumber, startTime, endTime, user, document);
+            Lendings.Add(loan);
+
+            loanNextNumber++;
+
+            Console.WriteLine("Loan registered successfully");
+            return loan;
+
+        }
+
+
 
         // Metodo per cercare un documento per codice
         public Document SearchDocumentByCode(string code)
         {
-            return this.Documents.Find(doc => doc.Code == code);
+            var findDocCode = Documents[code];
+            return findDocCode;
         }
 
         // Metodo per cercare un documento per titolo
         public List<Document> SearchDocumentByTitle(string title)
         {
-            return this.Documents.FindAll(doc => doc.Title.Contains(title));
+            List<Document> retrievedDocuments = new List<Document>();
+
+            var listDocument = Documents.Values;
+
+            foreach (var doc in listDocument)
+            {
+                if (doc.Title == title)
+                {
+                    retrievedDocuments.Add(doc);
+                }
+            }
+
+            return retrievedDocuments;
+
         }
 
         // Metodo per cercare prestiti con il nome e cognome Utente
 
-        public List<Lending> SearchLendingUser(string firstName, string lastName)
+        public List<Lending> SearchLendingByUser(string firstName, string lastName)
         {
-            return Lendings.FindAll(lending => lending.User.Firstname == firstName && lending.User.Lastname == lastName);
+            var findUserLoan = Lendings.FindAll(lending => lending.User.Firstname.ToLower() == firstName.ToLower() && lending.User.Lastname.ToLower() == lastName.ToLower());
+            return findUserLoan;
+
         }
-
-
-
-        
-
 
     }
 

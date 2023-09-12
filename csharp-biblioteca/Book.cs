@@ -12,12 +12,22 @@ namespace csharp_biblioteca
         public int NumberOfPages { get; set; }
 
         // COSTRUTTORE
-        public Book(string code, string title, int year, string category, string position, string author, int numberOfPages) : base(code, title, year, category, position, author)
+        public Book(string code, string title, int year, string category, string position, string author) : base(title, year, category, position, author)
         {
-            this.NumberOfPages = numberOfPages;
+            this.NumberOfPages = GetRandom();
         }
 
         // METODI
+
+        public override int GetRandom()
+        {
+            // Genera un numero da 80 and 1000
+            int min = 80;
+            int max = 1000;
+            int randNumber = Random.Shared.Next(min, max);
+
+            return randNumber;
+        }
         public override void PrintInfo()
         {
             base.PrintInfo();

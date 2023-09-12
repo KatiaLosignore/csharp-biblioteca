@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace csharp_biblioteca
 {
     public class User
     {
         // PROPRIETA'
+
         public string Lastname { get; set; }
         public string Firstname { get; set; }
         public string Email { get; set; }
@@ -28,6 +30,11 @@ namespace csharp_biblioteca
 
         // METODI
 
+        public override string ToString()
+        {
+            return $"{this.Firstname} {this.Lastname}";
+        }
+        
         public void PrintInfoUser()
         {
             Console.WriteLine($"Lastname: {this.Lastname}\r\nFirstname: {this.Firstname}\r\nEmail: {this.Email}\r\nPassword: {this.Password}\r\nPhoneNumber: {this.PhoneNumber}");

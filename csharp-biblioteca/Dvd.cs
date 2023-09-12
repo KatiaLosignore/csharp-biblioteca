@@ -12,13 +12,24 @@ namespace csharp_biblioteca
         public int Duration { get; set; }
 
         // COSTRUTTORE
-        public Dvd(string code, string title, int year, string category, string position, string author, int duration) : base(code, title, year, category, position, author)
+        public Dvd(string code, string title, int year, string category, string position, string author) : base(title, year, category, position, author)
         {
-            this.Duration = duration;
+            this.Duration = GetRandom();
         }
 
 
         // METODI
+
+        public override int GetRandom()
+        {
+            // Genera un numero random da 80 and 1000
+            int min = 60;
+            int max = 181;
+            int randNumber = Random.Shared.Next(min, max);
+
+            return randNumber;
+        }
+
         public override void PrintInfo()
         {
             base.PrintInfo();

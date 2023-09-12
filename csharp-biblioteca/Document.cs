@@ -11,6 +11,7 @@ namespace csharp_biblioteca
     {
         // PROPRIETA'
 
+        public static int TotalDocumentCreated = 0;
         public string Code { get; set; }
 
         public string Title { get; set; }
@@ -26,9 +27,10 @@ namespace csharp_biblioteca
 
         // COSTRUTTORE
 
-        public Document(string code, string title, int year, string category, string position, string author)
+        public Document(string title, int year, string category, string position, string author)
         {
-            this.Code = code;
+            this.Code = $"{TotalDocumentCreated} - {title[0].ToString().ToUpper()}-{GetRandom()}";
+            TotalDocumentCreated++;
             this.Title = title;
             this.Year = year;
             this.Category = category;
@@ -37,6 +39,19 @@ namespace csharp_biblioteca
         }
 
         // METODI
+
+        // Genera un numero random
+        public virtual int GetRandom()
+        {
+            // Generate a random number between 1 and 1000
+            int min = 1;
+            int max = 1000;
+
+            int randNumber = Random.Shared.Next(min, max);
+
+            return randNumber;
+        }
+
         public virtual void PrintInfo()
         {
             Console.WriteLine($"Code: {this.Code}\r\nTitle: {this.Title}\r\nYear: {this.Year}\r\nCategory: {this.Category}\r\nPosition: {this.Position}\r\nAuthor: {this.Author}");

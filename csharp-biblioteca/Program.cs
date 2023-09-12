@@ -1,91 +1,66 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using csharp_biblioteca;
-/*
-Document doc = new Document("1000", "titolo", 1950, "Matematica", 15, "Paul");
+using System.Runtime.Intrinsics.X86;
 
-doc.PrintInfo();
-*/
 
 // Istanzio la classe Library
 Library library = new Library("LibraryOne");
 
 // Istanzio la classe Book
-Book bookOne = new Book("5897", "Twilight", 2006, "Novel", "15A", "Stephenie Meyer", 412);
-Book bookTwo = new Book("4897", "Tokyo Express", 2020, "Novel", "23B", "Seichö Matsumoto", 402);
+Book bookOne = new Book("5897","Twilight", 2006, "Novel", "15A", "Stephenie Meyer");
+Book bookTwo = new Book("4897", "Tokyo Express", 2020, "Shonen", "28B", "Seichö Matsumoto");
+Book bookThree = new Book("4991", "One Piece", 2000, "Novel", "23B", "Eichiro Oda");
 
 // Istanzio la classe Dvd
-Dvd dvdOne = new Dvd("1485", "Sonic", 2020, "Adventure", "125A", "Jeff Fowler", 100);
-Dvd dvdTwo = new Dvd("2425", "Pinocchio", 2013, "Fantasy", "250B", "Enzo D'Alò", 120);
+Dvd dvdOne = new Dvd("1485", "Sonic", 2020, "Adventure", "125A", "Jeff Fowler");
+Dvd dvdTwo = new Dvd("2425", "Pinocchio", 2013, "Fantasy", "250B", "Enzo D'Alò");
+Dvd dvdThree = new Dvd("1525", "The Witcher", 2023, "Fantasy", "350B", "Denis Thampton");
 
-// Aggiungo i documenti creati alla biblioteca
-library.AddBook(bookOne);
-library.AddBook(bookTwo);
-library.AddDvd(dvdOne);
-library.AddDvd(dvdTwo);
+// Istanzio la classe User
+User userOne = new User("Verdi", "Giacomo", "giacomo@gmail.com", "giacomoverdi", "+393332147893");
+User userTwo = new User("Rossi", "Luca", "luca@gmail.com", "lucarossi", "+393312596123");
+User userThree = new User("Bianchi", "Giovanna", "gbianchi@gmail.com", "giovannabianchi", "+393338963147");
 
-// Stampo i documenti aggiunti
-List<Document> list = new List<Document>();
+// Aggiungo i documenti creati alla biblioteca (book e dvd)
+library.AddDocs(bookOne);
+library.AddDocs(bookTwo);
+library.AddDocs(bookThree);
 
-list.Add(bookOne);
-list.Add(bookTwo);
-list.Add(dvdOne);
-list.Add(dvdTwo);
+library.AddDocs(dvdOne);
+library.AddDocs(dvdTwo);
+library.AddDocs(dvdThree);
 
-Console.WriteLine($"The documents register here are: ");
+// Aggiungo gli user alla biblioteca
 
-foreach(Document document in list)
-{
-    document.PrintInfo();
-}
-
-Console.WriteLine("---------------------------------------");
-
-// Creo uno User
-User userOne = new User("Bianchi", "Mario", "bianchi@gmail.com", "mariobianchi", "+393335841158");
-
-// Stampo Info User
-Console.WriteLine("The User created is the following: ");
-userOne.PrintInfoUser();
-
-Console.WriteLine("---------------------------------------");
-
-// Aggiungo lo User alla Biblioteca
 library.AddUser(userOne);
+library.AddUser(userTwo);
+library.AddUser(userThree);
 
-// Registro un prestito
-Lending lendingOne = new Lending(DateTime.Now, DateTime.Now.AddDays(19), userOne, bookTwo);
+Console.WriteLine($"The number of documents present in the library is: {library.GetTotalDocuments()} documents");
 
-library.AddLending(DateTime.Now, DateTime.Now.AddDays(15), userOne, bookOne);
-lendingOne.PrintInfoLending();
+library.ToString();
 
-Console.WriteLine("---------------------------------------");
 
-// // Cerco documento per codice
-Document documentoSearch = library.SearchDocumentByCode("5897");
-if (documentoSearch != null)
+
+foreach (Document doc in library.GetListOfDocuments())
 {
-    Console.WriteLine("Document found: " + documentoSearch.Code);
-}
-else
-{
-    Console.WriteLine("Document not found");
+    Console.WriteLine(doc);
 }
 
-// Cerco un documento per Titolo
+Lending newLoan = library.RegisterAndGetLoan(DateTime.Now, DateTime.Now.AddDays(2), userOne, dvdOne);
+Console.WriteLine(newLoan);
 
-List<Document> documentSearch = library.SearchDocumentByTitle("Twilight");
+Lending newLoan2 = library.RegisterAndGetLoan(DateTime.Now.AddDays(3), DateTime.Now.AddDays(6), userTwo, dvdTwo);
+Console.WriteLine(newLoan2);
 
-foreach (var document in documentSearch)
-{
-    Console.WriteLine($"Your researched is: { document.Title}");
-}
+Lending newLoan3 = library.RegisterAndGetLoan(DateTime.Now, DateTime.Now.AddDays(2), userThree, dvdThree);
+Console.WriteLine(newLoan3);
 
-// Cerco per nome e cognome
 
-List<Lending> lendingUser = library.SearchLendingUser("Mario", "Bianchi");
 
-foreach ( var lending in lendingUser)
-{
-    Console.WriteLine($"Lending of book: {lending.Document.Title} , User: {lending.User.Firstname} {lending.User.Lastname}");
-}
+
+
+
+
+

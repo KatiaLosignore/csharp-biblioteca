@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,15 @@ namespace csharp_biblioteca
 {
     public class Lending
     {
+        public int LoanNumber { get; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public User User { get; set; }
         public Document Document { get; set; }
 
-        public Lending(DateTime startTime, DateTime endTime, User user, Document document)
+        public Lending(int loanNumber, DateTime startTime, DateTime endTime, User user, Document document)
         {
+            this.LoanNumber = loanNumber;
             this.StartTime = startTime;
             this.EndTime = endTime;
             this.User = user;
@@ -40,11 +43,18 @@ namespace csharp_biblioteca
             
         }
 
-        public void PrintInfoLending()
+        public override string ToString()
         {
-            Console.WriteLine("User loan information: ");
+            return $"Loan {this.LoanNumber}: {this.User} - {this.StartTime} until {this.EndTime}";
+        }
+        
+        /*
+        *public void PrintInfoLending()
+        {
+          Console.WriteLine("User loan information: ");
             Console.WriteLine($"Start Time: {this.StartTime}\r\nEnd Time: {this.EndTime}\r\nUser: {User.Firstname} {User.Lastname}\r\nDocument: {Document.Code} {Document.Title}");
         }
 
+        */
     }
 }
